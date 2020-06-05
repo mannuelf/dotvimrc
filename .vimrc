@@ -1,3 +1,4 @@
+set encoding=utf-8
 set nocompatible              " be iMproved, required
 set foldmethod=indent
 set foldlevel=99
@@ -16,26 +17,24 @@ set undofile
 set incsearch
 set colorcolumn=80
 
-filetype off                  " required
+call plug#begin('~/.vim/bundle')
+call plug#begin()
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin '907th/vim-auto-save'
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+"Plug 'L9'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug '907th/vim-auto-save'
 let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-Plugin 'psliwka/vim-smoothie'
-Plugin 'pangloss/vim-javascript'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/nerdtree'
+Plug 'psliwka/vim-smoothie'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdtree'
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable='⇒'
@@ -43,40 +42,42 @@ let g:NERDTreeDirArrowCollapsible='⇓'
 "let g:NERDTreeQuitOnOpen=1
 nmap <F12> :NERDTreeToggle<CR>
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'dracula/dracula-theme'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'mxw/vim-jsx'
-Plugin 'ianks/vim-tsx'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'mlaursen/vim-react-snippets'
-Plugin 'othree/html5.vim'
-Plugin 'alvan/vim-closetag'
+Plug 'vim-airline/vim-airline'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'dracula/dracula-theme'
+Plug 'wakatime/vim-wakatime'
+Plug 'mxw/vim-jsx'
+Plug 'ianks/vim-tsx'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'othree/html5.vim'
+Plug 'alvan/vim-closetag'
 let g:closetag_filenames = "*.html"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js,*.tsx,*.ts'
 let g:closetag_filetypes = 'html,xhtml,phtml,.ts,.js,.tsx,jsx'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx,js,tsx'
 let g:closetag_shortcut = '>'
 
-Plugin 'joshdick/onedark.vim'
-Plugin 'moll/vim-node'
-Plugin 'epmatsw/ag.vim'
-Plugin 'Rigellute/shades-of-purple.vim'
-Plugin 'mbbill/undotree'
-Plugin 'git@github.com:kien/ctrlp.vim.git'
-Plugin 'epilande/vim-es2015-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'joshdick/onedark.vim'
+Plug 'moll/vim-node'
+Plug 'epmatsw/ag.vim'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'mbbill/undotree'
+Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'epilande/vim-es2015-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python']
-Plugin 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+Plug 'jcherven/jummidark.vim'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'wadackel/vim-dogrun'
+Plug 'junegunn/vim-plug'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()            " required
 
 let g:UltiSnipsExpandTrigger='<C-l>'
 
@@ -141,7 +142,6 @@ au BufNewFile, BufRead *.py
 
 " flag white space
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-set encoding=utf-8
 
 " Kite
 "let g:kite_auto_complete=0
