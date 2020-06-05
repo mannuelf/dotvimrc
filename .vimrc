@@ -69,24 +69,11 @@ Plug 'epilande/vim-es2015-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python']
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-Plug 'jcherven/jummidark.vim'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'wadackel/vim-dogrun'
-Plug 'junegunn/vim-plug'
-
-call plug#end()            " required
-
-let g:UltiSnipsExpandTrigger='<C-l>'
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -101,10 +88,25 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Themes
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+Plug 'jcherven/jummidark.vim'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'wadackel/vim-dogrun'
+Plug 'junegunn/vim-plug'
+
+call plug#end()            " required
+
+let g:UltiSnipsExpandTrigger='<C-l>'
+
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 syntax on 
 " colorscheme dracula
 " colorscheme onedark
+" colorscheme dogrun 
 colorscheme shades_of_purple
 let g:shades_of_purple_airline = 1
 let g:airline_theme='shades_of_purple'
