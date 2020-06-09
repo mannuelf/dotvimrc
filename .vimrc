@@ -1,4 +1,7 @@
 set encoding=utf-8
+set updatetime=300 " delays and poor user experience.
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 set nocompatible
 set foldmethod=indent
 set foldlevel=99
@@ -6,7 +9,7 @@ set scrolloff=10
 set omnifunc=syntaxcomplete#Complete
 set number
 set noerrorbells
-set tabstop=4 softtabstop=4
+set tabstop=2 softtabstop=2
 set expandtab
 set smartcase
 set noswapfile
@@ -16,15 +19,9 @@ set undofile
 set incsearch
 set colorcolumn=80
 
-function! MarkdownComposer(info)
-  if a:info.status == 'installed' || a:info.forced
-    if has('nvim')
-      silent! !cargo build --release
-    else
-      silent! !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
+filetype on
+filetype plugin on
+filetype indent on
 
 call plug#begin('~/.vim/bundle')
 call plug#begin()
@@ -33,14 +30,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'git://git.wincent.com/command-t.git'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug '907th/vim-auto-save'
-let g:auto_save = 1
+let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-Plug 'euclio/vim-markdown-composer', {'do': function('MarkdownComposer'), 'on': 'MarkdownPreview'}
 Plug 'psliwka/vim-smoothie'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
-Plug 'leafgarland/typescript-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree'
 autocmd vimenter * NERDTree
@@ -55,7 +50,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'dracula/dracula-theme'
 Plug 'wakatime/vim-wakatime'
 Plug 'mxw/vim-jsx'
-Plug 'ianks/vim-tsx'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'mlaursen/vim-react-snippets'
@@ -80,23 +74,6 @@ Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'epilande/vim-es2015-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-let g:coc_global_extensions=[
-      \ 'coc-css',
-      \ 'coc-scssmodules',
-      \ 'coc-eslint',
-      \ 'coc-json',
-      \ 'coc-prettier',
-      \ 'coc-snippets',
-      \ 'coc-tsserver',
-      \ 'coc-yaml'
-      \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -141,7 +118,6 @@ nmap <silent> fr <Plug>(coc-rename)
 
 " Formatting the file
 nmap <silent> ff <Plug>(coc-format)
-
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -189,7 +165,7 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-space> <Plug>(coc-snippets-expand)
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python']
+let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 let g:prettier#autoformat = 0
@@ -208,27 +184,8 @@ call plug#end()            " required
 let g:markdown_composer_autostart=0
 let g:markdown_composer_refresh_rate=10000
 let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
-
-function! MarkdownPreview()
-  if !exists('*ComposerStart')
-    " if vim-markdown-composer hasn't been added yet, add it and reload
-    " the file before calling ComposerStart. Not sure why reloading the
-    " file is required, but breaks if it isn't
-    packadd vim-markdown-composer
-    edit %
-  endif
-
-  ComposerStart
-endfunction
-
-command! MarkdownPreview call MarkdownPreview()
-autocmd FileType markdown nnoremap <buffer> <F12> :MarkdownPreview<cr>
-
 let g:UltiSnipsExpandTrigger='<C-l>'
 
-" set Vim-specific sequences for RGB colors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 syntax on 
 " colorscheme dracula
 " colorscheme onedark
@@ -272,10 +229,14 @@ au BufNewFile, BufRead *.py
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Kite
-"let g:kite_auto_complete=0
-"let g:kite_snippets=0
-"set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
-"set laststatus=1
+let g:kite_auto_complete=1
+let g:kite_snippets=1
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=1
+let g:kite_log=1
+let g:kite_tab_complete=1
+let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
+autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 if executable('rg')
     let g:rg_derive_root='true'
