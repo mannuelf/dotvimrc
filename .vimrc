@@ -1,23 +1,34 @@
+syntax on
+
+set cmdheight=2
+set colorcolumn=80
 set encoding=utf-8
-set updatetime=300 " delays and poor user experience.
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-set nocompatible
-set foldmethod=indent
-set foldlevel=99
-set scrolloff=10
-set omnifunc=syntaxcomplete#Complete
-set number
-set noerrorbells
-set tabstop=2 softtabstop=2
 set expandtab
-set smartcase
-set noswapfile
+set foldlevel=99
+set foldmethod=indent
+set guicursor=
+set hidden
+set incsearch
+set incsearch
 set nobackup
+set nocompatible
+set noerrorbells
+set noerrorbells
+set nohlsearch
+set noshowmatch
+set noswapfile
+set number
+set omnifunc=syntaxcomplete#Complete
+set relativenumber
+set scrolloff=10
+set scrolloff=8
+set shortmess+=c
+set smartcase
+set tabstop=2 softtabstop=2
+set termguicolors
 set undodir=~/.vim/undodir
 set undofile
-set incsearch
-set colorcolumn=80
+set updatetime=50
 
 filetype on
 filetype plugin on
@@ -26,18 +37,47 @@ filetype indent on
 call plug#begin('~/.vim/bundle')
 call plug#begin()
 
-Plug 'tpope/vim-fugitive'
-Plug 'git://git.wincent.com/command-t.git'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug '907th/vim-auto-save'
+Plug 'alvan/vim-closetag'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'dracula/dracula-theme'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'epilande/vim-es2015-snippets'
+Plug 'epmatsw/ag.vim'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'jcherven/jummidark.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/vim-plug'
+Plug 'mbbill/undotree'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'moll/vim-node'
+Plug 'mxw/vim-jsx'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'psliwka/vim-smoothie'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'wadackel/vim-dogrun'
+Plug 'wakatime/vim-wakatime'
+
+call plug#end()
+
+" ⚙️ VIM Autosave
 let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-Plug 'psliwka/vim-smoothie'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'sheerun/vim-polyglot'
-Plug 'scrooloose/nerdtree'
+" ⚙️ NERDTree
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable='⇒'
@@ -45,16 +85,11 @@ let g:NERDTreeDirArrowCollapsible='⇓'
 "let g:NERDTreeQuitOnOpen=1
 nmap <F12> :NERDTreeToggle<CR>
 
-Plug 'vim-airline/vim-airline'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'dracula/dracula-theme'
-Plug 'wakatime/vim-wakatime'
-Plug 'mxw/vim-jsx'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tmhedberg/SimpylFold'
-Plug 'mlaursen/vim-react-snippets'
-Plug 'othree/html5.vim'
-Plug 'alvan/vim-closetag'
+" ⚙️ 
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" ⚙️ 
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
@@ -64,16 +99,6 @@ let g:closetag_regions = {
     \ 'javascript.jsx': 'jsxRegion',
     \ 'javascriptreact': 'jsxRegion',
     \ }
-
-Plug 'joshdick/onedark.vim'
-Plug 'moll/vim-node'
-Plug 'epmatsw/ag.vim'
-Plug 'Rigellute/shades-of-purple.vim'
-Plug 'mbbill/undotree'
-Plug 'git@github.com:kien/ctrlp.vim.git'
-Plug 'epilande/vim-es2015-snippets'
-Plug 'SirVer/ultisnips'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -167,26 +192,10 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-space> <Plug>(coc-snippets-expand)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
 
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-Plug 'jcherven/jummidark.vim'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'wadackel/vim-dogrun'
-Plug 'junegunn/vim-plug'
-
-call plug#end()            " required
-
-" ================================================================
-" vim-markdown-composer
-" ================================================================
-" only start markdown previewer after :ComposerStart
-let g:markdown_composer_autostart=0
-let g:markdown_composer_refresh_rate=10000
-let g:markdown_composer_external_renderer='pandoc -f gfm -t html'
+" ⚙️ Ulti Snips
 let g:UltiSnipsExpandTrigger='<C-l>'
 
-syntax on 
+" ⚙️ Color Scheme
 " colorscheme dracula
 " colorscheme onedark
 " colorscheme dogrun 
@@ -210,7 +219,7 @@ nnoremap <space> za
 " Pro Tip #5: Try this if you want to see the docstrings for folded code:
 let g:SimpylFold_docstring_preview=1
 
-" editor config
+" ⚙️ Editor config
 au BufNewFile, BufRead *.php,*.rb,*.html,*.js,*.ts,*.md,*.vue,*.jsx,*.tsx
     \ set tabstop=2
     \ set softtabstop=2
@@ -228,7 +237,7 @@ au BufNewFile, BufRead *.py
 " flag white space
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Kite
+" ⚙️ Kite
 let g:kite_auto_complete=1
 let g:kite_snippets=1
 set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
