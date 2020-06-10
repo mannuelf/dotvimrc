@@ -13,7 +13,6 @@ set incsearch
 set nobackup
 set nocompatible
 set noerrorbells
-set noerrorbells
 set nohlsearch
 set noshowmatch
 set noswapfile
@@ -48,7 +47,10 @@ Plug 'git://git.wincent.com/command-t.git'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'jcherven/jummidark.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/vim-plug'
+Plug 'leafgarland/typescript-vim'
 Plug 'mbbill/undotree'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'moll/vim-node'
@@ -85,11 +87,11 @@ let g:NERDTreeDirArrowCollapsible='⇓'
 "let g:NERDTreeQuitOnOpen=1
 nmap <F12> :NERDTreeToggle<CR>
 
-" ⚙️ 
+" ⚙️ Pretteir
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" ⚙️ 
+" ⚙️ VIM Autoclose
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
@@ -236,6 +238,9 @@ au BufNewFile, BufRead *.py
 
 " flag white space
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" ⚙️ VIM TypeScript
+autocmd BufNewFile,BufRead *.ts,*tsx setlocal filetype=typescript
 
 " ⚙️ Kite
 let g:kite_auto_complete=1
