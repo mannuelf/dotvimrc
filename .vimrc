@@ -77,11 +77,11 @@ Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
-" ⚙️ VIM Autosave
+" ⚙️  VIM Autosave
 let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-" ⚙️ NERDTree
+" ⚙️  NERDTree
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable='⇒'
@@ -89,11 +89,11 @@ let g:NERDTreeDirArrowCollapsible='⇓'
 "let g:NERDTreeQuitOnOpen=1
 nmap <F12> :NERDTreeToggle<CR>
 
-" ⚙️ Pretteir
+" ⚙️  Pretteir
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" ⚙️ VIM Autoclose
+" ⚙️  VIM Autoclose
 " Update closetag to also work on js and html files, don't want ts since <> is used for type args
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
@@ -196,10 +196,10 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-space> <Plug>(coc-snippets-expand)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
 
-" ⚙️ Ulti Snips
+" ⚙️  Util Snips
 let g:UltiSnipsExpandTrigger='<C-l>'
 
-" ⚙️ Color Scheme
+" ⚙️  Color Scheme
 " colorscheme dracula
 " colorscheme onedark
 " colorscheme dogrun 
@@ -223,7 +223,7 @@ nnoremap <space> za
 " Pro Tip #5: Try this if you want to see the docstrings for folded code:
 let g:SimpylFold_docstring_preview=1
 
-" ⚙️ Editor config
+" ⚙️  Editor config
 au BufNewFile, BufRead *.php,*.rb,*.html,*.js,*.ts,*.md,*.vue,*.jsx,*.tsx
     \ set tabstop=2
     \ set softtabstop=2
@@ -241,10 +241,10 @@ au BufNewFile, BufRead *.py
 " flag white space
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" ⚙️ VIM TypeScript
+" ⚙️  VIM TypeScript
 autocmd BufNewFile,BufRead *.ts,*tsx setlocal filetype=typescript
 
-" ⚙️ Kite
+" ⚙️  Kite
 let g:kite_auto_complete=1
 let g:kite_snippets=1
 set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
