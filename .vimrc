@@ -1,4 +1,7 @@
 syntax on
+filetype on
+filetype plugin on
+filetype indent on
 
 set cmdheight=2
 set colorcolumn=80
@@ -28,10 +31,6 @@ set termguicolors
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=50
-
-filetype on
-filetype plugin on
-filetype indent on
 
 call plug#begin('~/.vim/bundle')
 call plug#begin()
