@@ -51,6 +51,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/vim-plug'
 Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'mbbill/undotree'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'moll/vim-node'
