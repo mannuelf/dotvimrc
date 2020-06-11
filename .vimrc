@@ -13,6 +13,7 @@ set guicursor=
 set hidden
 set incsearch
 set incsearch
+set laststatus=1
 set nobackup
 set nocompatible
 set noerrorbells
@@ -26,6 +27,7 @@ set scrolloff=10
 set scrolloff=8
 set shortmess+=c
 set smartcase
+set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.vim/undodir
@@ -50,7 +52,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/vim-plug'
 Plug 'leafgarland/typescript-vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'mbbill/undotree'
 Plug 'mlaursen/vim-react-snippets'
@@ -59,7 +60,6 @@ Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'psliwka/vim-smoothie'
 Plug 'Rigellute/shades-of-purple.vim'
@@ -68,10 +68,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'wadackel/vim-dogrun'
 Plug 'wakatime/vim-wakatime'
 
 call plug#end()
@@ -215,12 +213,6 @@ endif
 let g:pymode_python='python3' 
 if has('python3')
 endif	
-
-" Enable folding with the spacebar
-nnoremap <space> za
-
-" Pro Tip #5: Try this if you want to see the docstrings for folded code:
-let g:SimpylFold_docstring_preview=1
 
 " ⚙️  Editor config
 au BufNewFile, BufRead *.php,*.rb,*.html,*.js,*.ts,*.md,*.vue,*.jsx,*.tsx
