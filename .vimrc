@@ -39,14 +39,11 @@ call plug#begin()
 
 Plug '907th/vim-auto-save'
 Plug 'alvan/vim-closetag'
-Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'dracula/dracula-theme'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'epilande/vim-es2015-snippets'
 Plug 'epmatsw/ag.vim'
 Plug 'git://git.wincent.com/command-t.git'
 Plug 'git@github.com:kien/ctrlp.vim.git'
-Plug 'jcherven/jummidark.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -233,7 +230,7 @@ au BufNewFile, BufRead *.py
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " ⚙️  VIM TypeScript
-autocmd BufNewFile,BufRead *.ts,*tsx setlocal filetype=typescript
+autocmd BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
 
 " ⚙️  Kite
 let g:kite_auto_complete=1
