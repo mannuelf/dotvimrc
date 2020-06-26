@@ -237,7 +237,7 @@ let g:kite_auto_complete=1
 let g:kite_snippets=1
 set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=1
-let g:kite_log=1
+let g:kite_log=0
 let g:kite_tab_complete=1
 let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
 autocmd CompleteDone * if !pumvisible() | pclose | endif
