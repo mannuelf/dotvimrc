@@ -51,7 +51,7 @@ Plug 'junegunn/vim-plug'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'mbbill/undotree'
-Plug 'mlaursen/vim-react-snippets'
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -67,7 +67,9 @@ Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'Galooshi/vim-import-js'
 Plug 'wakatime/vim-wakatime'
+Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
@@ -82,6 +84,19 @@ let g:NERDTreeDirArrowExpandable='⇒'
 let g:NERDTreeDirArrowCollapsible='⇓'
 "let g:NERDTreeQuitOnOpen=1
 nmap <F12> :NERDTreeToggle<CR>
+" git indicators
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 " ⚙️  Pretteir
 let g:prettier#autoformat = 0
