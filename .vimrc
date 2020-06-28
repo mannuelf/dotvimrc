@@ -39,12 +39,10 @@ call plug#begin()
 
 Plug '907th/vim-auto-save'
 Plug 'alvan/vim-closetag'
-Plug 'dracula/dracula-theme'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'epmatsw/ag.vim'
 Plug 'git://git.wincent.com/command-t.git'
 Plug 'git@github.com:kien/ctrlp.vim.git'
-Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/vim-plug'
@@ -58,7 +56,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'psliwka/vim-smoothie'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdtree'
@@ -205,13 +202,10 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-space> <Plug>(coc-snippets-expand)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
 
-" ⚙️  Util Snips
+" ⚙️  Util Snips settings
 let g:UltiSnipsExpandTrigger='<C-l>'
 
-" ⚙️  Color Scheme
-" colorscheme dracula
-" colorscheme onedark
-" colorscheme dogrun 
+" ⚙️  Color Scheme settings
 colorscheme shades_of_purple
 let g:shades_of_purple_airline = 1
 let g:airline_theme='shades_of_purple'
@@ -226,7 +220,7 @@ let g:pymode_python='python3'
 if has('python3')
 endif	
 
-" ⚙️  Editor config
+" ⚙️  Editor config settings
 au BufNewFile, BufRead *.php,*.rb,*.html,*.js,*.ts,*.md,*.vue,*.jsx,*.tsx
     \ set tabstop=2
     \ set softtabstop=2
@@ -245,7 +239,7 @@ au BufNewFile, BufRead *.py
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " ⚙️  VIM TypeScript
-autocmd BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
+au BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
 
 " ⚙️  Kite
 let g:kite_auto_complete=1
