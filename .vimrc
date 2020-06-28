@@ -40,8 +40,6 @@ call plug#begin()
 Plug '907th/vim-auto-save'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'epmatsw/ag.vim'
-Plug 'git://git.wincent.com/command-t.git'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -221,25 +219,34 @@ if has('python3')
 endif	
 
 " ⚙️  Editor config settings
-au BufNewFile, BufRead *.php,*.rb,*.html,*.js,*.ts,*.md,*.vue,*.jsx,*.tsx
+au BufNewFile, BufRead *.php,*.py,*.html,*.js,*.ts,*.tsx,*.jsx,*.md,*.vue,*.css,*.scss
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
-
-au BufNewFile, BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
+    \ set shiftwidth=2
     \ set textwidth=79
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
 
-" flag white space
+" ⚙️  flag white space
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " ⚙️  VIM TypeScript
-au BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
+autocmd BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
+
+" dark red
+hi tsxTagName guifg=#E06C75
+
+" orange
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxCloseTagName guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+
+" yellow
+hi tsxAttrib guifg=#F8BD7F cterm=italic
 
 " ⚙️  Kite
 let g:kite_auto_complete=1
