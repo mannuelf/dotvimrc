@@ -69,7 +69,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 " ⚙️  VIM Autosave
-let g:auto_save = 0
+let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " ⚙️  NERDTree
