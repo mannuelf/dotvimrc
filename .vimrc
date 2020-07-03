@@ -59,7 +59,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'Galooshi/vim-import-js'
 Plug 'wakatime/vim-wakatime'
-"Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
