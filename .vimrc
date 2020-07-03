@@ -12,7 +12,6 @@ set foldmethod=indent
 set guicursor=
 set hidden
 set incsearch
-set incsearch
 set laststatus=1
 set nobackup
 set nocompatible
@@ -32,13 +31,12 @@ set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=50
+set updatetime=300
 
 call plug#begin('~/.vim/bundle')
 call plug#begin()
 
-Plug '907th/vim-auto-save'
-Plug 'alvan/vim-closetag'
+"Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'junegunn/fzf.vim'
@@ -49,28 +47,26 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'mbbill/undotree'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'Galooshi/vim-import-js'
 Plug 'wakatime/vim-wakatime'
-Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
 " ⚙️  VIM Autosave
-let g:auto_save = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
+"let g:auto_save = 1
+"let g:auto_save_events = ["InsertLeave", "TextChanged"]
+"let g:auto_save_no_updatetime=1
 
 " ⚙️  NERDTree
 autocmd vimenter * NERDTree
@@ -97,17 +93,7 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" ⚙️  VIM Autoclose
-" Update closetag to also work on js and html files, don't want ts since <> is used for type args
-let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
-let g:closetag_regions = {
-    \ 'typescript': 'jsxRegion,tsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
-
+" ⚙️  Coc
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -249,17 +235,16 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 
 " ⚙️  Kite
-let g:kite_auto_complete=1
-let g:kite_snippets=1
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=1
-let g:kite_log=0
-let g:kite_tab_complete=1
-let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
-autocmd CompleteDone * if !pumvisible() | pclose | endif
+"let g:kite_auto_complete=0
+"let g:kite_snippets=0
+"let g:kite_log=0
+"let g:kite_tab_complete=0
+"let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
+"autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
+" ⚙️  Ctrl-P 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard', './node_modules']
