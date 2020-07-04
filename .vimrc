@@ -63,9 +63,9 @@ Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " ⚙️  VIM Autosave
-"let g:auto_save = 1
-"let g:auto_save_events = ["InsertLeave", "TextChanged"]
-"let g:auto_save_no_updatetime=1
+let g:auto_save = 0
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_no_updatetime=1
 
 " ⚙️  NERDTree
 autocmd vimenter * NERDTree
@@ -234,12 +234,14 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 
 " ⚙️  Kite
-"let g:kite_auto_complete=0
-"let g:kite_snippets=0
+let g:kite_auto_complete=1
+let g:kite_snippets=1
 "let g:kite_log=0
-"let g:kite_tab_complete=0
-"let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
-"autocmd CompleteDone * if !pumvisible() | pclose | endif
+let g:kite_tab_complete=1
+let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
+let g:kite_previous_placeholder = '<C-H>'
+let g:kite_next_placeholder = '<C-L>'
+autocmd CompleteDone * if !pumvisible() | pclose | endif
 
 if executable('rg')
     let g:rg_derive_root='true'
