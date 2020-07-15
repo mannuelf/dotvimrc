@@ -185,6 +185,9 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-space> <Plug>(coc-snippets-expand)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
 
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 " ⚙️  Util Snips settings
 let g:UltiSnipsExpandTrigger='<C-l>'
 
@@ -218,26 +221,32 @@ au BufNewFile, BufRead *.php,*.py,*.html,*.js,*.ts,*.tsx,*.jsx,*.md,*.vue,*.css,
 au BufRead, BufNewFile *.ts,*.js,*.tsx,*.tsx,*.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " ⚙️  VIM TypeScript
-autocmd BufNewFile, BufRead *.ts,*.tsx setlocal filetype=typescript
-
-" dark red
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.ts,*.tsx,*.jsx set filetype=typescript.tsx
+" VIM TypeScipt Colours
+hi tsxTypeBraces guifg=#999999
+hi tsxTypes guifg=#666666
 hi tsxTagName guifg=#E06C75
-
-" orange
 hi tsxCloseString guifg=#F99575
 hi tsxCloseTag guifg=#F99575
 hi tsxCloseTagName guifg=#F99575
 hi tsxAttributeBraces guifg=#F99575
 hi tsxEqual guifg=#F99575
-
-" yellow
 hi tsxAttrib guifg=#F8BD7F cterm=italic
+hi ReactState guifg=#EF476F
+hi ReactProps guifg=#EF476F
+hi ApolloGraphQL guifg=#CB886B
+hi Events ctermfg=204 guifg=#56B6C2
+hi ReduxKeywords ctermfg=204 guifg=#C678DD
+hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
+hi WebBrowser ctermfg=204 guifg=#56B6C2
+hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
 " ⚙️  Kite
-let g:kite_auto_complete=1
-let g:kite_snippets=1
+let g:kite_auto_complete=0
+let g:kite_snippets=0
 "let g:kite_log=0
-let g:kite_tab_complete=1
+let g:kite_tab_complete=0
 let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
 let g:kite_previous_placeholder = '<C-H>'
 let g:kite_next_placeholder = '<C-L>'
