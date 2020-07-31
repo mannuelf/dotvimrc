@@ -243,10 +243,10 @@ hi WebBrowser ctermfg=204 guifg=#56B6C2
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
 " ⚙️  Kite
-let g:kite_auto_complete=0
-let g:kite_snippets=0
+let g:kite_auto_complete=1
+let g:kite_snippets=1
 "let g:kite_log=0
-let g:kite_tab_complete=0
+let g:kite_tab_complete=1
 let g:kite_supported_languages = ['css', 'html', 'python', 'javascript', 'go']
 let g:kite_previous_placeholder = '<C-H>'
 let g:kite_next_placeholder = '<C-L>'
