@@ -1,4 +1,3 @@
-stdpath('config') . '/init.vim'
 syntax on
 filetype on
 filetype plugin on
