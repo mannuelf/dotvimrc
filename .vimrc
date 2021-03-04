@@ -36,7 +36,8 @@ set updatetime=300
 call plug#begin('~/.vim/bundle')
 call plug#begin()
 
-"Plug '907th/vim-auto-save'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug '907th/vim-auto-save'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'junegunn/fzf.vim'
