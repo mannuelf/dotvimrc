@@ -37,6 +37,7 @@ Plug '907th/vim-auto-save'
 Plug 'airblade/vim-gitgutter'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -59,16 +60,26 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tellijo/vim-react-native-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
 " Color scheme
-colorscheme shades_of_purple
-let g:shades_of_purple_airline = 1
-let g:airline_theme='shades_of_purple'
+colorscheme onedark
+"let g:shades_of_purple_airline = 1
+"let g:airline_theme='shades_of_purple'
 
 " Neoformat
-autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Neoformat
+autocmd BufWritePre, *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Neoformat
+
+" Utilsnips
+let g:UltiSnipsExpandTrigger="<shift>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " NERDTree
 autocmd VimEnter * NERDTree
@@ -118,13 +129,12 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 let g:auto_save_no_updatetime = 1
 
 " Pretteir
-let g:prettier#autoformat = 1 
+let g:prettier#autoformat = 0 
 let g:prettier#quickfix_enabled = 0
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-autocmd BufWritePre *.py,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"autocmd BufWritePre *.py,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" Coc
-" Use tab for trigger completion with characters ahead and navigate.
+" Coc - Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
@@ -187,7 +197,6 @@ nnoremap <silent> <space>k :<C-u>CocPrev<CR>             " Do default action for
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>       " Resume latest coc list.
 
 " for snippets
-let g:coc_global_extensions = [ 'coc-tsserver' ]
 let g:coc_snippet_next = '<c-j>' " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>' " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 imap <C-space> <Plug>(coc-snippets-expand) " Use <C-j> for both expand and jump (make expand higher priority.)
