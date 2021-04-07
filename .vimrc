@@ -29,12 +29,13 @@ set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=300
+set updatetime=500
 
 call plug#begin()
 
 Plug '907th/vim-auto-save'
 Plug 'airblade/vim-gitgutter'
+Plug 'cespare/vim-toml'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'joshdick/onedark.vim'
