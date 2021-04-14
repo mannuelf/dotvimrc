@@ -48,6 +48,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pangloss/vim-javascript' 
 Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
@@ -63,14 +64,14 @@ Plug 'wakatime/vim-wakatime'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tellijo/vim-react-native-snippets'
 Plug 'SirVer/ultisnips'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
 " Color scheme
-colorscheme onedark
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
 "let g:shades_of_purple_airline = 1
 "let g:airline_theme='shades_of_purple'
 
@@ -126,13 +127,13 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Autosave
 let g:auto_save = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-let g:auto_save_no_updatetime = 1
+let g:auto_save_events = ["InsertLeave"]
+let g:auto_save_no_updatetime = 0
 
 " Pretteir
 let g:prettier#autoformat = 0 
 let g:prettier#quickfix_enabled = 0
-autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 "autocmd BufWritePre *.py,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " Coc - Use tab for trigger completion with characters ahead and navigate.
