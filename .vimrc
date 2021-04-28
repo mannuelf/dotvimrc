@@ -35,6 +35,7 @@ call plug#begin()
 
 Plug '907th/vim-auto-save'
 Plug 'airblade/vim-gitgutter'
+Plug 'ayu-theme/ayu-vim'
 Plug 'cespare/vim-toml'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
@@ -54,7 +55,6 @@ Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier'
 Plug 'Rigellute/shades-of-purple.vim'
-Plug 'sbdchd/neoformat'
 Plug 'stephpy/vim-yaml'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tpope/vim-fugitive'
@@ -70,13 +70,16 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
 " Color scheme
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-"let g:shades_of_purple_airline = 1
-"let g:airline_theme='shades_of_purple'
+colorscheme shades_of_purple
+let g:airline_theme='shades_of_purple'
+let g:shades_of_purple_airline = 1
 
-" Neoformat
-autocmd BufWritePre, *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Neoformat
+" IndentLine {{
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<shift>"
