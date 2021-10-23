@@ -33,18 +33,19 @@ set updatetime=500
 
 call plug#begin()
 
+Plug 'epmatsw/ag.vim'
+Plug 'morhetz/gruvbox'
 Plug '907th/vim-auto-save'
 Plug 'airblade/vim-gitgutter'
-Plug 'ayu-theme/ayu-vim'
 Plug 'cespare/vim-toml'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'joshdick/onedark.vim'
 Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mbbill/undotree'
-Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
@@ -53,7 +54,7 @@ Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pangloss/vim-javascript' 
 Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
-Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -66,13 +67,16 @@ Plug 'tellijo/vim-react-native-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
 " Color scheme
-colorscheme shades_of_purple
-let g:airline_theme='shades_of_purple'
-let g:shades_of_purple_airline = 1
+colorscheme gruvbox 
+set background=dark
+"let g:airline_theme = 'dracula'
+"let g:shades_of_purple_airline = 1
 
 " IndentLine {{
 let g:indentLine_char = ''
@@ -80,6 +84,12 @@ let g:indentLine_first_char = ''
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 " }}
+
+" Indent
+set tabstop=2
+set shiftwidth=2
+"set expandtab  
+"set smartindent
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<shift>"
@@ -134,9 +144,9 @@ let g:auto_save_events = ["InsertLeave"]
 let g:auto_save_no_updatetime = 0
 
 " Pretteir
-let g:prettier#autoformat = 0 
+let g:prettier#autoformat = 1 
 let g:prettier#quickfix_enabled = 0
-autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.mdx,*.vue,*.yaml,*.html PrettierAsync
 "autocmd BufWritePre *.py,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " Coc - Use tab for trigger completion with characters ahead and navigate.
@@ -206,3 +216,13 @@ let g:coc_snippet_next = '<c-j>' " Use <C-j> for jump to next placeholder, it's 
 let g:coc_snippet_prev = '<c-k>' " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 imap <C-space> <Plug>(coc-snippets-expand) " Use <C-j> for both expand and jump (make expand higher priority.)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
+
+" ttope unimpaird
+nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+
+nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+
