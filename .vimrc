@@ -78,6 +78,10 @@ set background=dark
 "let g:airline_theme = 'dracula'
 "let g:shades_of_purple_airline = 1
 
+" Coc Spell cheker
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
 " IndentLine {{
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
