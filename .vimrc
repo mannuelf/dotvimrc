@@ -73,14 +73,22 @@ Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " Color scheme
-colorscheme gruvbox 
-set background=dark
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+colorscheme shades_of_purple 
+"set background=dark
 "let g:airline_theme = 'dracula'
-"let g:shades_of_purple_airline = 1
+let g:shades_of_purple_airline = 1
+let g:shades_of_purple_lightline = 1
+let g:lightline = { 'colorscheme': 'shades_of_purple' }
 
 " Coc Spell cheker
 vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
+
+"termguicolors
 
 " IndentLine {{
 let g:indentLine_char = ''
@@ -229,4 +237,3 @@ nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
 nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
 nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
 nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-
