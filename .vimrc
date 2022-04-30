@@ -34,7 +34,6 @@ set updatetime=500
 call plug#begin()
 
 Plug 'epmatsw/ag.vim'
-Plug 'morhetz/gruvbox'
 Plug '907th/vim-auto-save'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
@@ -155,11 +154,10 @@ let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave"]
 let g:auto_save_no_updatetime = 0
 
-" Pretteir
+" Prettier
 let g:prettier#autoformat = 1 
 let g:prettier#quickfix_enabled = 0
 autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.mdx,*.vue,*.yaml,*.html PrettierAsync
-"autocmd BufWritePre *.py,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " Coc - Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -228,12 +226,3 @@ let g:coc_snippet_next = '<c-j>' " Use <C-j> for jump to next placeholder, it's 
 let g:coc_snippet_prev = '<c-k>' " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 imap <C-space> <Plug>(coc-snippets-expand) " Use <C-j> for both expand and jump (make expand higher priority.)
 let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
-
-" ttope unimpaird
-nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
-nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
-nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
-
-nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
-nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
-nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
