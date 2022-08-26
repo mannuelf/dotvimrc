@@ -68,6 +68,10 @@ Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-unimpaired'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -113,7 +117,7 @@ autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
-nmap <F12> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Modified"  : "✹",
@@ -220,6 +224,20 @@ nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>  " Search workspace symb
 nnoremap <silent> <space>j :<C-u>CocNext<CR>             " Do default action for next item.
 nnoremap <silent> <space>k :<C-u>CocPrev<CR>             " Do default action for previous item.
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>       " Resume latest coc list.
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
+      \ CheckBackSpace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>' 
 
 " for snippets
 let g:coc_snippet_next = '<c-j>' " Use <C-j> for jump to next placeholder, it's default of coc.nvim
