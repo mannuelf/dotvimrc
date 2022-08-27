@@ -1,3 +1,4 @@
+
 syntax on
 filetype on
 filetype plugin on
@@ -75,6 +76,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
+let mapleader=","
+
 " Color scheme
 if (has("termguicolors"))
  set termguicolors
@@ -117,7 +120,7 @@ autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
-nmap <C-n> :NERDTreeToggle<CR>
+nmap <F6> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Modified"  : "✹",
@@ -225,7 +228,7 @@ nnoremap <silent> <space>j :<C-u>CocNext<CR>             " Do default action for
 nnoremap <silent> <space>k :<C-u>CocPrev<CR>             " Do default action for previous item.
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>       " Resume latest coc list.
 
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <TAB>                                                 
       \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ?
       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
