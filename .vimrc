@@ -1,4 +1,3 @@
-
 syntax on
 filetype on
 filetype plugin on
@@ -34,45 +33,48 @@ set updatetime=500
 
 call plug#begin()
 
-Plug 'epmatsw/ag.vim'
 Plug '907th/vim-auto-save'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'epmatsw/ag.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'joshdick/onedark.vim'
 Plug 'jparise/vim-graphql'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mbbill/undotree'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'mlaursen/vim-react-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pangloss/vim-javascript' 
 Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'Rigellute/shades-of-purple.vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'stephpy/vim-yaml'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
-Plug 'wakatime/vim-wakatime'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tellijo/vim-react-native-snippets'
-Plug 'SirVer/ultisnips'
-Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -118,9 +120,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-nmap <F6> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden = 1
+nmap <Esc> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Modified"  : "✹",
@@ -242,8 +244,42 @@ endfunction
 
 let g:coc_snippet_next = '<tab>' 
 
+" ================================================================
+" => Spell checking
+" ================================================================
+" always enforce spell checking in text files
+autocmd BufRead,BufNewFile *.txt,*.md,COMMIT_EDITMSG setlocal spell
+
+" toggle spell checking for current file only
+map <leader>ss :setlocal spell!<cr>
+
+" linux doesn't do this by default, so enable it just to be safe
+hi SpellBad cterm=underline
+
 " for snippets
 let g:coc_snippet_next = '<c-j>' " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>' " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 imap <C-space> <Plug>(coc-snippets-expand) " Use <C-j> for both expand and jump (make expand higher priority.)
-let g:coc_global_extensions = ['coc-eslint', 'coc-json', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-git', 'coc-highlight', 'coc-python', 'coc-yaml']
+
+let g:coc_global_extensions = [
+      \ 'coc-css',
+      \ 'coc-emmet',
+      \ 'coc-eslint',
+      \ 'coc-git',
+      \ 'coc-highlight',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-markdown-preview-enhanced',
+      \ 'coc-pairs',
+      \ 'coc-prettier',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ 'coc-spell-checker',
+      \ 'coc-tailwindcss',
+      \ 'coc-tslint-plugin',
+      \ 'coc-tsserver',
+      \ 'coc-vimlsp',
+      \ 'coc-yaml',
+      \ 'coc-yank',
+      ]
+
