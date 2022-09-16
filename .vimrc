@@ -1,3 +1,4 @@
+set encoding=UTF-8
 syntax on
 filetype on
 filetype plugin on
@@ -36,12 +37,11 @@ call plug#begin()
 Plug '907th/vim-auto-save'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'SirVer/ultisnips'
-Plug 'SirVer/ultisnips'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'epmatsw/ag.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -51,11 +51,16 @@ Plug 'jparise/vim-graphql'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'mileszs/ack.vim'
 Plug 'mlaursen/vim-react-snippets'
+Plug 'natebosch/dartlang-snippets'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
@@ -66,6 +71,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+Plug 'ryanoasis/vim-devicons'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'stephpy/vim-yaml'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -80,17 +86,25 @@ call plug#end()
 
 let mapleader=","
 
+" silver_searcher Ack to ag 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Prettierpath
+let g:prettier#exec_cmd_path = "~/.nvm/versions/node/v16.17.0/lib/node_modules/npm"
 " Color scheme
 if (has("termguicolors"))
  set termguicolors
 endif
 
-colorscheme shades_of_purple 
+colorscheme purify 
 "set background=dark
-"let g:airline_theme = 'dracula'
+"let g:airline_theme = 'shades_of_purple'
+let g:airline_theme = 'purify'
 let g:shades_of_purple_airline = 1
 let g:shades_of_purple_lightline = 1
-let g:lightline = { 'colorscheme': 'shades_of_purple' }
+let g:lightline = { 'colorscheme': 'purify' }
 
 " Coc Spell checker
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -121,7 +135,7 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
+let g:NERDTreeShowHidden = 1
 nmap <Esc> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
@@ -281,5 +295,7 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-yaml',
       \ 'coc-yank',
-      ]
+      \ 'coc-flutter']
+
+let g:lsc_auto_map = v:true
 
