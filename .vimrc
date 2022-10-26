@@ -1,4 +1,5 @@
 set encoding=UTF-8
+
 syntax on
 filetype on
 filetype plugin on
@@ -31,6 +32,7 @@ set termguicolors
 set undodir=~/.vim/undodir
 set undofile
 set updatetime=500
+set guifont=Hack
 
 call plug#begin()
 
@@ -50,7 +52,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'jparise/vim-graphql'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -71,6 +72,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pantharshit00/vim-prisma'
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+Plug 'ryanoasis/vim-devicons'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'stephpy/vim-yaml'
@@ -93,18 +95,21 @@ endif
 
 " Prettierpath
 let g:prettier#exec_cmd_path = "~/.nvm/versions/node/v16.17.0/lib/node_modules/npm"
+
 " Color scheme
 if (has("termguicolors"))
  set termguicolors
 endif
 
-colorscheme purify 
-"set background=dark
+colorscheme shades_of_purple 
+set background=dark
 "let g:airline_theme = 'shades_of_purple'
-let g:airline_theme = 'purify'
-let g:shades_of_purple_airline = 1
+"let g:airline_theme = 'purify'
+"let g:purify_lightline = 1
 let g:shades_of_purple_lightline = 1
-let g:lightline = { 'colorscheme': 'purify' }
+let g:lightline = { 'colorscheme': 'shades_of_purple' }
+let g:airline_powerline_fonts = 1
+let g:webdevicons_enable_nerdtree = 1
 
 " Coc Spell checker
 vmap <leader>a <Plug>(coc-codeaction-selected)
@@ -125,7 +130,7 @@ set shiftwidth=2
 "set expandtab  
 "set smartindent
 
-" Utilsnips
+" Ultisnips
 let g:UltiSnipsExpandTrigger="<shift>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -136,7 +141,7 @@ autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeShowHidden = 1
-nmap <Esc> :NERDTreeToggle<CR>
+nmap <CR> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Modified"  : "✹",
